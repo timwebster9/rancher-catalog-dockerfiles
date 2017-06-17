@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  squid:
+    image: timw/squid
+    ports:
+      - 3128:3128
+#    volumes:
+#      - /var/squid:/data
