@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  bind:
+    image: mars:5000/timw/bind
+#    ports:
+#      - "53:53"
+#      - "53/53/udp"
+
+#    volumes:
+#      - /var/squid:/data

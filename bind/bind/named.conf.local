@@ -1,0 +1,29 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "sbx.webheads.com" {
+    type master;
+    file "/etc/bind/zones/db.sbx.webheads.com"; # zone file path
+    #allow-transfer { 10.128.20.12; };           # ns2 private IP address - secondary
+};
+
+zone "1.168.192.in-addr.arpa" {
+    type master;
+    file "/etc/bind/zones/db.192.168.1";  # 192.168.1.0/16 subnet
+    #allow-transfer { 10.128.20.12; };  # ns2 private IP address - secondary
+};
+
+logging {
+    channel query.log {
+        file "/var/log/query.log";
+        // Set the severity to dynamic to see all the debug messages.
+        severity dynamic;
+    };
+    category queries { query.log; };
+};
+

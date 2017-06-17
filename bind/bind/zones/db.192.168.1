@@ -1,0 +1,22 @@
+;
+; BIND reverse data file for local loopback interface
+;
+$TTL	604800
+@	IN	SOA	mars.sbx.webheads.com. admin.sbx.webheads.com. (
+			      4		; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+
+; name servers - NS records
+      IN      NS      mars.sbx.webheads.com.
+
+; PTR Records
+116   IN      PTR     neptune.sbx.webheads.com.  ; 192.168.1.116
+117   IN      PTR     mars.sbx.webheads.com.     ; 192.168.1.117
+118   IN      PTR     saturn.sbx.webheads.com.   ; 192.168.1.118
+119   IN      PTR     jupiter.sbx.webheads.com.  ; 192.168.1.119
+121   IN      PTR     deimos.sbx.webheads.com.   ; 192.168.1.121
+
