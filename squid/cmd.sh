@@ -8,7 +8,7 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
-SQUID_LOG=/var/log/squid/cache.log
+SQUID_LOG=/var/log/squid/access.log
 
 # Wait for log and tail for container output
 while /bin/true; do
