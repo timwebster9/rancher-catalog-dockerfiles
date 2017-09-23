@@ -22,7 +22,7 @@ RUN set -x \
 		openjdk8-jre="$JAVA_ALPINE_VERSION" \
 	&& [ "$JAVA_HOME" = "$(docker-java-home)" ]
 
-ENV REDIS_VERSION 3.2.6
+ENV REDIS_VERSION 4.0.2
 ENV REDIS_DOWNLOAD_URL http://download.redis.io/releases/redis-${REDIS_VERSION}.tar.gz
 
 RUN apk update && apk upgrade \
