@@ -1,13 +1,13 @@
 .wikipedia.org
 .topmarks.co.uk
 .wikimedia.org
-#friv.com
+.friv.com
 .bbc.co.uk
 .bbci.co.uk
 .ngkids.co.uk
 .nationalgeographic.com
 .funo.com
-#gamib.net
+.gamib.net
 .amazon.co.uk
 .amazon.com
 .ssl-images-amazon.com
@@ -25,9 +25,13 @@ s0.2mdn.net
 #stealingthediamond.com
 .uk.webuy.com
 .playsciencegames.com
-.webheads.sbx.com
+.webster.com
+.plex.tv
 
 #steam update server
 162.254.197.108
+.thepoetryofjosephcoelho.com
+.python.org
+.wikibooks.org
 
 
