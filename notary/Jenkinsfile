@@ -9,7 +9,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://repo.rancher.zone', 'nexus') {
-                        def image = docker.build("timw/notary-server:latest", "-f Dockerfile.server ." )
+                        def image = docker.build("timw/notary-server:latest", "-f notary/Dockerfile.server notary" )
                         image.push()
                     }
                 }
