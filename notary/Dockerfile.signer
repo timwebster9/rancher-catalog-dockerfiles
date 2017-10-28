@@ -1,0 +1,4 @@
+FROM notary:signer-0.5.0
+
+COPY certs/notary-signer.crt certs/notary-signer.key certs/notary-server.crt /certs/
+COPY config/signer-config.json /config/

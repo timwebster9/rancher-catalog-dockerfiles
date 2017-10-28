@@ -1,0 +1,5 @@
+FROM notary:server-0.5.0
+
+COPY certs/notary-server.crt certs/notary-server.key certs/root-ca.crt /certs/
+COPY config/server-config.json /config/
+

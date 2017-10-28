@@ -1,0 +1,50 @@
+version: "2"
+services:
+  server:
+    image: notary:server-0.5.0
+    ports:
+      - "9060:8080"
+      - "4443:4443"
+    depends_on:
+      - server-db
+      - notarysigner
+    command: "-config=/config/server-config.json"
+    volumes:
+      - ./certs:/certs
+      - ./config:/config
+  server-db:
+    image: mariadb:10.3.2
+    environment:
+      - TERM=dumb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=notaryserver
+      - MYSQL_USER=server
+      - MYSQL_PASSWORD=server
+    command: mysqld --innodb_file_per_table
+    volumes:
+      - /etc/volumes/notary-server-data:/var/lib/mysql
+      - ./sql/server:/docker-entrypoint-initdb.d
+
+  notarysigner:
+    image: notary:signer-0.5.0
+    command: "-config=/config/signer-config.json"
+    environment:
+      - NOTARY_SIGNER_PASSWORDALIAS1=mypassword
+    volumes:
+      - ./certs:/certs
+      - ./config:/config
+    depends_on:
+      - signer-db
+  signer-db:
+    image: mariadb:10.3.2
+    environment:
+      - TERM=dumb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=notarysigner
+      - MYSQL_USER=signer
+      - MYSQL_PASSWORD=signer
+    command: mysqld --innodb_file_per_table
+    volumes:
+      - /etc/volumes/notary-signer-data:/var/lib/mysql
+      - ./sql/signer:/docker-entrypoint-initdb.d
+
