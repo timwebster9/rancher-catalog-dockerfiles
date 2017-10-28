@@ -12,6 +12,7 @@ services:
     volumes:
       - ./certs:/certs
       - ./config:/config
+
   server-db:
     image: mariadb:10.3.2
     environment:
@@ -35,6 +36,7 @@ services:
       - ./config:/config
     depends_on:
       - signer-db
+      
   signer-db:
     image: mariadb:10.3.2
     environment:
