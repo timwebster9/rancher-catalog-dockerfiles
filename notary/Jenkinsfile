@@ -15,5 +15,35 @@ pipeline {
                 }
             }
         }
+        stage('Build notary-signer') {
+            steps {
+                script {
+                    docker.withRegistry('https://repo.rancher.zone', 'nexus') {
+                        def image = docker.build("timw/notary-signer:latest", "-f notary/Dockerfile.signer notary" )
+                        image.push()
+                    }
+                }
+            }
+        }
+        stage('Build notary-server-db') {
+            steps {
+                script {
+                    docker.withRegistry('https://repo.rancher.zone', 'nexus') {
+                        def image = docker.build("timw/notary-server-db:latest", "-f notary/Dockerfile.server-db notary" )
+                        image.push()
+                    }
+                }
+            }
+        }
+        stage('Build notary-signer-db') {
+            steps {
+                script {
+                    docker.withRegistry('https://repo.rancher.zone', 'nexus') {
+                        def image = docker.build("timw/notary-signer-db:latest", "-f notary/Dockerfile.signer-db notary" )
+                        image.push()
+                    }
+                }
+            }
+        }
     }
 }
