@@ -13,5 +13,13 @@ if [ -n "${SWARM_EXECUTORS}" ]; then
     SWARM_ARGS="${SWARM_ARGS} -executors ${SWARM_EXECUTORS}"
 fi
 
+if [ -n "${LABELS}" ]; then
+    SWARM_ARGS="${SWARM_ARGS} -labels ${LABELS}"
+fi
+
+if [ -n "${NODE_NAME}" ]; then
+    SWARM_ARGS="${SWARM_ARGS} -name ${NODE_NAME}"
+fi
+
 exec java -jar /usr/share/jenkins/swarm-client-${SWARM_CLIENT_VERSION}.jar -fsroot /workspace ${SWARM_ARGS} \
        -master http://jenkins-primary:${JENKINS_PORT:-8080} -disableSslVerification

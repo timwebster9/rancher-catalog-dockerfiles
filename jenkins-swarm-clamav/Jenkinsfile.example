@@ -1,0 +1,49 @@
+#!groovy
+
+pipeline {
+    agent {
+    	label 'clam'
+    }
+    parameters {
+        string(name: 'IMAGE', defaultValue: 'maven:alpine', description: 'Image to scan')
+    }
+    stages {
+        stage ('Scan') {
+            steps {
+                script {
+                    // Update signature database
+                    sh 'freshclam'
+
+                    // ensure 'unofficial signatures' are loaded
+                    //sh 'clamscan --debug 2>&1 /dev/null | grep "loaded"'
+
+                    // Pull image
+                    sh "docker pull ${params.IMAGE}"
+
+                    // Run a container so we can export the filesystem
+                    def containerId = sh returnStdout: true, script: "docker run -d --entrypoint=\"cat\" ${params.IMAGE}"
+                    echo "${containerId}"
+
+                    // Setup a working directory for clamav
+                    sh 'mkdir -p clamav-workdir'
+
+                    // export and extract the container filesystem
+                    sh "docker export -o clamav-export.tar ${containerId}"
+                    sh "tar -xvf clamav-export.tar -C clamav-workdir"
+
+                    // perform the scan
+                    sh 'clamscan -r -l scan.txt clamav-workdir'
+                }
+            }
+        }
+    }
+    post {
+        always {
+            // archive the scan results
+            archiveArtifacts 'scan.txt'
+
+            // clean up
+            deleteDir()
+        }
+    }
+}
