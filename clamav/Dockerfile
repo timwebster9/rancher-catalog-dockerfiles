@@ -5,7 +5,8 @@ RUN yum install -y epel-release \
      lvm2 git java-1.8.0-openjdk-headless clamav clamav-update \
      which bind-utils wget rsync \
   && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
-  && yum install -y docker-ce
+  && yum install -y docker-ce \
+  && yum clean all
 
 # ClamAV Unofficial Signatures
 RUN wget https://github.com/extremeshok/clamav-unofficial-sigs/archive/5.6.2.tar.gz -P /tmp \
@@ -14,7 +15,8 @@ RUN wget https://github.com/extremeshok/clamav-unofficial-sigs/archive/5.6.2.tar
   && chmod 755 /usr/local/sbin/clamav-unofficial-sigs.sh \
   && mkdir /etc/clamav-unofficial-sigs \
   && cp /tmp/clamav-unofficial-sigs-5.6.2/config/* /etc/clamav-unofficial-sigs/ \
-  && mv /etc/clamav-unofficial-sigs/os.centos7.conf /etc/clamav-unofficial-sigs/os.conf
+  && mv /etc/clamav-unofficial-sigs/os.centos7.conf /etc/clamav-unofficial-sigs/os.conf \
+  && rm -rf /tmp/*
 
 COPY user.conf /etc/clamav-unofficial-sigs/
 
