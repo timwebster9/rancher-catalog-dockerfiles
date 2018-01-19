@@ -1,13 +1,10 @@
 .DEFAULT=build
 
 build:
-	docker build --pull -t mars:5000/timw/jenkins .
+	docker build --pull -t timw/jenkins-server .
 
-push:
-	docker push mars:5000/timw/jenkins
+up:
+	docker-compose up -d && docker-compose logs -f
 
-#start:
-#	docker-compose down && docker-compose up -d && docker-compose logs -f
-
-#stop:
-#	docker-compose down
+down:
+	docker-compose down

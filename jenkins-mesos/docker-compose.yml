@@ -1,0 +1,20 @@
+version: "2"
+
+services:
+  jenkins:
+    image: mars:5000/timw/jenkins
+    volumes:
+      - jenkins-data-titan:/var/jenkins_home
+    environment:
+      LIBPROCESS_PORT: 9400
+      LIBPROCESS_ADVERTISE_PORT: 9402
+      LIBPROCESS_ADVERTISE_IP: 192.168.1.117
+      JENKINS_SLAVE_AGENT_PORT: 50002
+    labels:
+      io.rancher.container.hostname_override: container_name
+      io.rancher.container.pull_image: always
+
+volumes:
+  jenkins-data-titan:
+    driver: rancher-nfs
+    external: true
