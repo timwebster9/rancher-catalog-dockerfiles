@@ -17,7 +17,8 @@
 .sportsdirect.com
 .steamcommunity.com
 .steampowered.com
-steamcommunity-a.akamaihd.net
+.steamcontent.com
+.steamcommunity-a.akamaihd.net
 .steamstatic.com
 .toppsfootball.com
 .googleapis.com
@@ -27,11 +28,33 @@ s0.2mdn.net
 .playsciencegames.com
 .webster.com
 .plex.tv
+.rancher.zone
+.ancho.re
+.typingclub.com
+.old-maps.co.uk
+.duckduckgo.com
+.thedarkmod.com
+.mathletics.com
+.3plearning.com
+.armorgames.com
+.amazonaws.com
+.bootstrapcdn.com
+.digicert.com
+.stripe.com
+.intergi.com
+.playwire.com
+.stripe.network
+.gstatic.com
+.amazontrust.com
+.activelearnprimary.co.uk
+.ttrockstars.com
 
 #steam update server
 162.254.197.108
 .thepoetryofjosephcoelho.com
 .python.org
 .wikibooks.org
+.golang.org
+.github.com
 
 
